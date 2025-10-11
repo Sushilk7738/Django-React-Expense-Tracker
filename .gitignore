@@ -1,0 +1,27 @@
+# Python / Django
+venv/
+env/
+.env
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.sqlite3
+backend/db.sqlite3
+
+# Django static / media
+media/
+staticfiles/
+static/
+
+# Node / React
+frontend/node_modules/
+frontend/build/
+npm-debug.log*
+yarn-error.log
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
