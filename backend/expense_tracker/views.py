@@ -1,5 +1,6 @@
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.db.models import Sum
 from .models import *
 import json
 # Create your views here.
@@ -87,3 +88,24 @@ def update_expense(request, expense_id):
             return JsonResponse({'message': 'Expense not found'}, status = 404)
 
 
+@csrf_exempt
+def delete_expense(request, expense_id):
+    if request.method == "DELETE":
+        try:
+            expense = Expense.objects.get(id = expense_id)
+            expense.delete()
+            return JsonResponse({'message':'Expense deleted successfully'})
+        except:
+            return JsonResponse({'message':'Expense not found'})
+        
+
+@csrf_exempt
+def search_expense(request, user_id):
+    if request.method == 'GET':
+        from_date = request.GET.get('from')
+        to_date = request.GET.get('to')
+        expenses = Expense.objects.filter(UserId = user_id, ExpenseDate__range= [from_date, to_date])
+        expense_list = list(expenses.values())
+        agg =expenses.aggregate(Sum('ExpenseCost'))
+        total = agg['ExpenseCost__sum'] or 0
+        return JsonResponse({'expenses':expense_list, 'total': total})
