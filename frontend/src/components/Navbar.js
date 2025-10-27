@@ -43,7 +43,7 @@ const Navbar = () => {
                                     <Link className="nav-link" to="/expense-report"><i className='fas fa-file-alt me-1'></i> Expense Report</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link className="nav-link" to="/expense-report"><i className='fas fa-key me-1'></i> Change Password</Link>
+                                    <Link className="nav-link" to="/change-password"><i className='fas fa-key me-1'></i> Change Password</Link>
                                 </li>
                                 <button className="nav-item btn btn-danger btn-sm ms-2" onClick={handleLogout}>
                                     <i className='fas fa-sign-out-alt me-1'></i> Logout
